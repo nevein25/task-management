@@ -3,7 +3,7 @@ spring:
     name: server
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/taskmanagement
     username: postgres
@@ -11,7 +11,7 @@ spring:
 
 app:
   jwt:
-    secret: kajslksdjasdhhFdhgfdhgahdcbhjsdfnkgjnj
+    secret: rChJvnAPX2d5wsMC/G1AaEtAoAo0GRrL8cA0z5Bl1YaTy+yIrK2DAty5zOHikLQurB3T9z/1nW8FcmQ+mKgDlQ==
     expiration:
       minutes: 10
   cors:
