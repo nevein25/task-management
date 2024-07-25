@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface ITaskService {
 
-    List<Task> getTasks();
 
-    List<Task> getTasksContainingText(String text);
 
     Task validateAndGetTask(String id);
 

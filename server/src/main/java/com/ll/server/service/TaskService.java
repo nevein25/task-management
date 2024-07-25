@@ -24,15 +24,6 @@ public class TaskService implements ITaskService {
         return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(String.format("Task with id %s not found", id)));
     }
 
-    @Override
-    public List<Task> getTasks() {
-        return taskRepository.findAllByOrderByCreatedAtDesc();
-    }
-
-    @Override
-    public List<Task> getTasksContainingText(String text) {
-        return taskRepository.findByIdContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrderByCreatedAtDesc(text, text);
-    }
 
     @Override
     public Task validateAndGetTask(String id) {

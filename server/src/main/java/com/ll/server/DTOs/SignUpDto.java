@@ -21,4 +21,8 @@ public class SignUpDto {
     @NotBlank
     private String name;
 
+    @Schema(example = "email@gmail.com")
+    @NotBlank
+    private String email;
+
 }

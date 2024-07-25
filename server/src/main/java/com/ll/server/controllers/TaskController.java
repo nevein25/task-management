@@ -34,10 +34,13 @@ public class TaskController {
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
+
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+
     @GetMapping
-    public List<TaskDto> getTasks(@RequestParam(value = "text", required = false) String text) {
-        List<Task> tasks = (text == null) ? taskService.getTasks() : taskService.getTasksContainingText(text);
+    public List<TaskDto> getMyTasks(@AuthenticationPrincipal CustomUserDetails currentUser) {
+        User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
+        List<Task> tasks = taskService.getTasksForUser(user.getUsername());
         return tasks.stream()
                 .map(taskMapper::toTaskDto)
                 .collect(Collectors.toList());
@@ -84,14 +87,5 @@ public class TaskController {
         return taskMapper.toTaskDto(updatedTask);
     }
 
-    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
 
-    @GetMapping("/my-tasks")
-    public List<TaskDto> getMyTasks(@AuthenticationPrincipal CustomUserDetails currentUser) {
-        User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
-        List<Task> tasks = taskService.getTasksForUser(user.getUsername());
-        return tasks.stream()
-                .map(taskMapper::toTaskDto)
-                .collect(Collectors.toList());
-    }
 }

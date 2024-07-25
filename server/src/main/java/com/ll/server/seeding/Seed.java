@@ -32,9 +32,9 @@ public class Seed implements CommandLineRunner {
     }
 
     private static final List<User> USERS = Arrays.asList(
-            new User("user1", "user1", "user1"),
-            new User("user2", "user2", "user2"),
-            new User("user3", "user3", "user3")
+            new User("user1", "user1", "user1", "user1@gmail.com"),
+            new User("user2", "user2", "user2", "user2@gmail.com" ),
+            new User("user3", "user3", "user3", "user3@gmail.com")
 
 
     );

@@ -9,9 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, String> {
-
-    List<Task> findAllByOrderByCreatedAtDesc();
-
-    List<Task> findByIdContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrderByCreatedAtDesc(String id, String description);
     List<Task> findByUserOrderByCreatedAtDesc(User user);
 }

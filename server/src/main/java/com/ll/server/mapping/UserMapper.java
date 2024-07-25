@@ -13,18 +13,16 @@ public class UserMapper implements IUserMapper {
 
     @Override
     public UserDto toUserDto(User user) {
-        if (user == null) {
-            return null;
-        }
+        if (user == null) return null;
+
         List<UserDto.TaskDto> tasks = user.getTasks().stream().map(this::toUserDtoTaskDto).toList();
-        return new UserDto(user.getId(), user.getUsername(), user.getName(), tasks);
+        return new UserDto(user.getId(), user.getUsername(), user.getName(),user.getEmail(), tasks);
 
     }
 
     private UserDto.TaskDto toUserDtoTaskDto(Task task) {
-        if (task == null) {
-            return null;
-        }
+        if (task == null) return null;
+
         return new UserDto.TaskDto(task.getId(), task.getDescription(), task.getCreatedAt());
     }
 }

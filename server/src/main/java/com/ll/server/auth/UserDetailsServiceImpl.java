@@ -33,7 +33,9 @@ private CustomUserDetails mapUserToCustomUserDetails(User user) {
         customUserDetails.setUsername(user.getUsername());
         customUserDetails.setPassword(user.getPassword());
         customUserDetails.setName(user.getName());
-        customUserDetails.setAuthorities(Collections.emptyList());
+        customUserDetails.setEmail(user.getEmail());
+
+    customUserDetails.setAuthorities(Collections.emptyList());
         return customUserDetails;
     }
 }
