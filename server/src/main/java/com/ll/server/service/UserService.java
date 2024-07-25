@@ -1,6 +1,6 @@
 package com.ll.server.service;
 
-import com.ll.server.Exceptions.UserNotFoundException;
+import com.ll.server.exceptions.UserNotFoundException;
 import com.ll.server.entities.User;
 import com.ll.server.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

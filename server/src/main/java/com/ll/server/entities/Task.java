@@ -1,15 +1,11 @@
 package com.ll.server.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import com.ll.server.common.Status;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Data
@@ -29,8 +25,20 @@ public class Task {
 
     private ZonedDateTime createdAt;
 
-    public Task(String description) {
+    private String title;
+
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+
+    private LocalDate dueDate;
+
+    public Task(String description, String title, Status status, LocalDate dueDate ) {
         this.description = description;
+        this.title = title;
+        this.status = status;
+        this.dueDate = dueDate;
     }
 
     @PrePersist

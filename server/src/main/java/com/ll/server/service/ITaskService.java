@@ -19,5 +19,5 @@ public interface ITaskService {
     void deleteTask(Task task);
     Task getTaskById(String id);
     boolean isTaskOwnedByUser(Task task, User user);
-
+    List<Task> getTasksForUser(String username);
 }

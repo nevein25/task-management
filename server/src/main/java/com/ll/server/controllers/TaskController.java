@@ -3,7 +3,7 @@ package com.ll.server.controllers;
 
 import com.ll.server.DTOs.CreateTaskDto;
 import com.ll.server.DTOs.TaskDto;
-import com.ll.server.Exceptions.UserNotAuthorizedException;
+import com.ll.server.exceptions.UserNotAuthorizedException;
 import com.ll.server.auth.CustomUserDetails;
 import com.ll.server.entities.Task;
 import com.ll.server.entities.User;
@@ -76,7 +76,22 @@ public class TaskController {
         }
 
         existingTask.setDescription(updateTaskRequest.getDescription());
+        existingTask.setTitle(updateTaskRequest.getTitle());
+        existingTask.setStatus(updateTaskRequest.getStatus());
+        existingTask.setDueDate(updateTaskRequest.getDueDate());
+
         Task updatedTask = taskService.saveTask(existingTask);
         return taskMapper.toTaskDto(updatedTask);
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+
+    @GetMapping("/my-tasks")
+    public List<TaskDto> getMyTasks(@AuthenticationPrincipal CustomUserDetails currentUser) {
+        User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
+        List<Task> tasks = taskService.getTasksForUser(user.getUsername());
+        return tasks.stream()
+                .map(taskMapper::toTaskDto)
+                .collect(Collectors.toList());
     }
 }

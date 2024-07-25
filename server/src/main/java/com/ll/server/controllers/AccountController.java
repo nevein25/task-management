@@ -4,7 +4,7 @@ package com.ll.server.controllers;
 import com.ll.server.DTOs.AuthResponse;
 import com.ll.server.DTOs.LoginDto;
 import com.ll.server.DTOs.SignUpDto;
-import com.ll.server.Exceptions.DuplicatedUserInfoException;
+import com.ll.server.exceptions.DuplicatedUserInfoException;
 import com.ll.server.config.TokenProvider;
 import com.ll.server.entities.User;
 import com.ll.server.service.IUserService;
